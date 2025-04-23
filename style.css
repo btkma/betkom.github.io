@@ -1,0 +1,577 @@
+@charset "UTF-8";
+/***
+    The new CSS reset - version 1.8.5 (last updated 14.6.2023)
+    GitHub page: https://github.com/elad2412/the-new-css-reset
+***/
+/*
+    Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property
+    - The "symbol *" part is to solve Firefox SVG sprite bug
+    - The "html" attribute is exclud, because otherwise a bug in Chrome breaks the CSS hyphens property (https://github.com/elad2412/the-new-css-reset/issues/36)
+ */
+@import url(https://fonts.googleapis.com/css?family=Roboto:regular,700,900&display=swap);
+*:where(:not(html, iframe, canvas, img, svg, video, audio):not(svg *, symbol *)) {
+  all: unset;
+  display: revert;
+}
+
+/* Preferred box-sizing value */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Reapply the pointer cursor for anchor tags */
+a,
+button {
+  cursor: revert;
+}
+
+/* Remove list styles (bullets/numbers) */
+ol,
+ul,
+menu {
+  list-style: none;
+}
+
+/* For images to not be able to exceed their container2 */
+img {
+  max-inline-size: 100%;
+  max-block-size: 100%;
+}
+
+/* removes spacing between cells in tables */
+table {
+  border-collapse: collapse;
+}
+
+/* Safari - solving issue when using user-select:none on the <body> text input doesn't working */
+input,
+textarea {
+  -webkit-user-select: auto;
+}
+
+/* revert the 'white-space' property for textarea elements on Safari */
+textarea {
+  white-space: revert;
+}
+
+/* minimum style to allow to style meter element */
+meter {
+  -webkit-appearance: revert;
+  -moz-appearance: revert;
+       appearance: revert;
+}
+
+/* preformatted text - use only for this feature */
+:where(pre) {
+  all: revert;
+}
+
+/* reset default text opacity of input placeholder */
+::-moz-placeholder {
+  color: unset;
+}
+::placeholder {
+  color: unset;
+}
+
+/* remove default dot (•) sign */
+::marker {
+  content: initial;
+}
+
+/* fix the feature of 'hidden' attribute.
+   display:revert; revert to element instead of attribute */
+:where([hidden]) {
+  display: none;
+}
+
+/* revert for bug in Chromium browsers
+   - fix for the content editable attribute will work properly.
+   - webkit-user-select: auto; added for Safari in case of using user-select:none on wrapper element */
+:where([contenteditable]:not([contenteditable=false])) {
+  -moz-user-modify: read-write;
+  -webkit-user-modify: read-write;
+  overflow-wrap: break-word;
+  -webkit-line-break: after-white-space;
+  -webkit-user-select: auto;
+}
+
+/* apply back the draggable feature - exist only in Chromium and Safari */
+:where([draggable=true]) {
+  -webkit-user-drag: element;
+}
+
+/* Revert Modal native behavior */
+:where(dialog:modal) {
+  all: revert;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  height: 100%;
+  font-family: "Roboto", sans-serif;
+  background-color:#292b2e;
+  color: #d3ffe8;
+}
+
+p {
+  line-height: 150%;
+}
+
+h1 {
+  font-size: 38px;
+  font-weight: 600;
+  text-align: center;
+  margin: 25px 0;
+}
+
+h2 {
+  font-size: 32px;
+  font-weight: 600;
+  text-decoration: underline;
+  margin: 20px 0;
+  text-align: center;
+}
+
+h3 {
+  font-size: 26px;
+  font-weight: 600;
+  margin: 15px 0;
+}
+
+ol {
+  list-style: decimal;
+  padding: 15px 25px;
+}
+
+ul {
+  list-style: disc;
+  padding: 15px 25px;
+}
+
+li {
+  line-height: 150%;
+}
+
+ol li::marker,
+ul li::marker {
+  color: #233d50;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  overflow-x: auto;
+  margin: 20px 0;
+}
+table tr td,
+table tr th {
+  border: 1px solid #333;
+  padding: 15px;
+}
+table tr th {
+  background-color: #233d50;
+  color: #fff;
+  font-size: 18px;
+  text-align: center;
+}
+table tr td:hover {
+  background-color: #e3e3e3;
+}
+
+.Pintable {
+  overflow-x: scroll;
+  width: 100%;
+}
+
+
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  max-width: 90vw;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.header2 {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  background: #202123;
+}
+.header2 .container2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+  max-width: 90vw;
+  margin: 0 auto;
+}
+.header2__logo {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.header2__logo img:first-child {
+  max-width: 30px;
+}
+.header2__logo img:last-child {
+  max-width: 190px;
+}
+.header2 .header2__logo.header2__item {
+  justify-content: flex-start;
+}
+.header2__item {
+  flex: 1 1 33.333%;
+  justify-content: center;
+}
+.header2__buttons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.header2__buttons .btn {
+  background: linear-gradient(90deg, #b9deed, #efefef);
+  border-radius: 10px;
+  transition: 0.2s ease-in-out;
+}
+.header2__buttons .btn:hover {
+  background: linear-gradient(90deg, #aea4e3, #d3ffe8);
+}
+.header2__auth {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  width: 120px;
+  font-size: 18px;
+  padding: 10px 0;
+}
+
+.main1 {
+  min-height: 100vh;
+  flex: 1 1 auto;
+  padding-top: 100px;
+  
+}
+.main__body1 {
+  padding: 60px 0;
+
+}
+.main1 .swiper {
+  padding: 30px 0 70px 0;
+  width: 800px;
+  height: 500px;
+  position: relative;
+}
+.main1 .swiper img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.main1 .gift-block {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  margin: 20px auto;
+  max-width: 40%;
+  border: 2px solid #ffdd3a;
+  border-radius: 30px;
+}
+.main1 .gift-block__icon {
+  width: 40px;
+  background-color: #ffdd3a;
+  padding: 20px;
+  border-radius: 67%;
+  height: 40px;
+  animation: 4s infinite scaleanim;
+  transition: 0.5s;
+  box-sizing: content-box;
+  margin-top: -13px;
+}
+.main1 .gift-block__body {
+  padding: 20px 20px 0;
+  text-align: center;
+}
+.main1 .gift-block__text {
+  color: #ffdd3a;
+  text-align: center;
+  font-weight: bolder;
+  font-size: 1.5rem;
+}
+.main1 .gift-block__text p {
+  margin: 5px 0;
+  padding: 0 7px;
+}
+.main1 .gift-block__numbers {
+  color: #ffffff;
+  font-weight: 900;
+  font-size: 2.7rem;
+  line-height: 1;
+  animation-delay: 2s;
+  animation: 1s steps(2) infinite stopsignal;
+}
+.main1 .gift-block__button {
+  display: flex;
+  justify-content: center;
+  padding: 10px 20px 20px;
+}
+.main1 .gift-block__button button {
+  font-size: 1rem;
+  font-weight: 900;
+  display: table;
+  text-transform: uppercase;
+  color: #202123;
+  background-color: #ffdd3a;
+  border: 1px solid #1f2841;
+  border-radius: 15px;
+  padding: 10px 55px 9px;
+  width: 100%;
+}
+
+.footer1 {
+  background-color: #202123;
+}
+.footer__body1 {
+  max-width: 90vw;
+  margin: 0 auto;
+  padding: 30px 16px;
+  color: #fff;
+  text-align: center;
+}
+
+.btn-container21 {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-content1 {
+  display: flex;
+  align-items: center;
+  padding: 5px 30px;
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: #202123;
+  background: #ffdd3a;
+  transition: 1s;
+  border-radius: 100px;
+  box-shadow: 0 0 0.2em 0 rgba(0, 0, 0, 0.5019607843);
+}
+
+.btn-content1-green {
+  display: flex;
+  align-items: center;
+  padding: 5px 30px;
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: #ffffff;
+  background: #1f2841;
+  transition: 1s;
+  border-radius: 100px;
+  box-shadow: 0 0 0.2em 0 rgba(0, 0, 0, 0.5019607843);
+}
+
+.btn-content1:hover,
+.btn-content1:focus {
+  transition: 0.5s;
+  animation: btn-content1 1s;
+  outline: 0.1em solid transparent;
+  outline-offset: 0.2em;
+  box-shadow: 0 0 0.4em 0 #ffdf39;
+}
+
+.btn-content1 .icon-arrow1 {
+  transition: 0.5s;
+  margin-right: 0px;
+  transform: scale(0.6);
+}
+
+.btn-content1-green span {
+  padding: 12px 0;
+}
+
+.btn-content1:hover .icon-arrow1 {
+  transition: 0.5s;
+  margin-right: 25px;
+}
+
+.icon-arrow1 {
+  width: 20px;
+  margin-left: 15px;
+  position: relative;
+  top: 6%;
+}
+
+/* SVG */
+#arrow-icon-one {
+  transition: 0.4s;
+  transform: translateX(-60%);
+}
+
+#arrow-icon-two {
+  transition: 0.5s;
+  transform: translateX(-30%);
+}
+
+.btn-content1:hover #arrow-icon-three {
+  animation: color_anim 1s infinite 0.2s;
+}
+
+.btn-content1:hover #arrow-icon-one {
+  transform: translateX(0%);
+  animation: color_anim 1s infinite 0.6s;
+}
+
+.btn-content1:hover #arrow-icon-two {
+  transform: translateX(0%);
+  animation: color_anim 1s infinite 0.4s;
+}
+
+@media (max-width: 1199px) {
+  .swiper {
+    max-width: 100%;
+  }
+  .header2 {
+    padding: 25px 16px;
+  }
+  .header2 .container2 {
+    flex-direction: column;
+    gap: 20px;
+    height: auto;
+  }
+  .header2 .header2__logo.header2__item {
+    justify-content: center;
+  }
+  .header2__logo img:last-child {
+    width: 190px;
+  }
+  .header2__buttons .btn {
+    max-width: 100px;
+  }
+  .btn {
+    font-size: 16px;
+  }
+  .btn-content1,
+  .btn-content1-green {
+    font-size: 16px;
+  }
+  .main1 {
+    padding-top: 160px;
+  }
+  .main__body1 {
+    padding: 30px 0;
+  }
+}
+@media (max-width: 768px) {
+  .wrapper {
+    max-width: 100%;
+  }
+  h1 {
+    margin: 20px 0;
+    font-size: 30px;
+  }
+  h2 {
+    font-size: 24px;
+    margin: 15px 0;
+  }
+  h3 {
+    font-size: 20px;
+    margin: 10px 0;
+  }
+  .main1 .swiper {
+    width: 100%;
+    height: 300px;
+    padding: 20px 0 40px 0;
+  }
+  .main1 .gift-block {
+    max-width: 100%;
+  }
+  .footer__body1 {
+    padding: 20px 0;
+  }
+}
+/* SVG animations */
+@keyframes color_anim {
+  0% {
+    fill: white;
+  }
+  50% {
+    fill: #ffdf39;
+  }
+  100% {
+    fill: white;
+  }
+}
+/* Button animations */
+@keyframes btn-content1 {
+  0% {
+    outline: 0.2em solid #ffdf39;
+    outline-offset: 0;
+  }
+}
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 1px 0 1px #473e12, 0 1px 1px #39ffa4, -1px 0 1px #473e12, 0 -1px 1px #ffdf39;
+  }
+  50% {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+@keyframes pulse-mobile {
+  0% {
+    transform: scale(1);
+    box-shadow: 1px 0 1px #473e12, 0 1px 1px #39ffa4, -1px 0 1px #473e12, 0 -1px 1px #ffdf39;
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+@keyframes stopsignal {
+  0% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes scaleanim {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+}
